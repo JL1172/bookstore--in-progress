@@ -1,5 +1,5 @@
 const express = require("express");
-
+const BookRouter = require("./books/books-router");
 
 //pulling middlewares in
 const cors = require("cors");
@@ -27,7 +27,9 @@ server.use(helmet());
 
 
 //server using routes
-
+server.use("/api/books",BookRouter)
 //server using routes
+
+
 
 module.exports = server;
