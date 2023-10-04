@@ -1,6 +1,7 @@
 const express = require("express");
 const BookRouter = require("./books/books-router");
-
+const LoginRouter = require("./login/login-router");
+const RegisterRouter = require("./register/register-router");
 //pulling middlewares in
 const cors = require("cors");
 const helmet = require("helmet");
@@ -28,6 +29,8 @@ server.use(helmet());
 
 //server using routes
 server.use("/api/books",BookRouter)
+server.use("/api/login",LoginRouter)
+server.use("/api/register",RegisterRouter)
 //server using routes
 
 
