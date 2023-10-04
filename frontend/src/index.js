@@ -5,7 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from 'react-router-dom';
+import { applyMiddleware, compose, legacy_createStore as createStore } from 'redux';
+import { rootReducer } from './components/redux/reducers/root-reducer';
+import thunk from 'redux-thunk';
 
+const enhancers = compose;
+
+const store = createStore(rootReducer,enhancers(applyMiddleware(thunk)))
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>

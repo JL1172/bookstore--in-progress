@@ -2,6 +2,7 @@ import { StyledHeader } from "../../styles/StyledHeader";
 import { FaShoppingCart,FaBook } from 'react-icons/fa'
 import { CgProfile } from 'react-icons/cg'
 import { ImSearch } from 'react-icons/im'
+import { Link } from "react-router-dom";
 
 export default function Header(props) {
     return (
@@ -26,13 +27,13 @@ export default function Header(props) {
             </div>
             <div id="bottomContainer">
                 <div className="routes">
-                    <h4>Home</h4>
+                    <Link to = "/">Home</Link>
                 </div>
                 <div className="routes">
-                    <h4>Shop</h4>
+                    <Link to = "/books">Shop</Link>
                 </div>
                 <div className="routes">
-                    <h4>Profile</h4>
+                    <Link to = "/profile">Profile</Link>
                 </div>
             </div>
         </StyledHeader>

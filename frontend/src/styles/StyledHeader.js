@@ -4,6 +4,7 @@ export const StyledHeader = styled.div`
 display : flex;
 flex-direction : column;
 width : 100%;
+background-color : whitesmoke;
 
 
 @media screen and (max-width: 480px){
@@ -66,7 +67,7 @@ flex-wrap : wrap;
     position : absolute;
     border : 2px solid rgb(163, 74, 74);
     left : -1.5rem;
-    top : 2.2rem;
+    top : 2.4rem;
     width : 2rem;
     transform-origin : left;
     opacity : 0;
@@ -133,6 +134,10 @@ align-items : center;
 flex-basis : 70px;
 flex-wrap : wrap;
 background-color : rgb(163, 74, 74);
+a {
+    color : white;
+    font-size : 20px;
+}
 h4 {
     color : white;
     font-size : 20px;
@@ -144,7 +149,7 @@ div {
 .routes {
     position : relative;
 }
-h4::before {
+a::before {
     content : "";
     position : absolute;
     border : 2px solid white;
@@ -155,7 +160,7 @@ h4::before {
     opacity : 0;
     transition : 100ms ease-in-out;
 }
-h4:hover::before {
+a:hover::before {
     transform : scaleX(200%);
     opacity : 1;
     transition : 100ms ease-in-out; 
