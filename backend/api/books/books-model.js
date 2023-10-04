@@ -3,6 +3,7 @@ const db = require("../../data/db-config");
 module.exports = {
     findAll,
     findId,
+
 }
 
 async function findAll(query) {
@@ -19,7 +20,6 @@ async function findId(id) {
     const result = await db("books").where({book_id : id})
     return result;
 }
-
 
 
 
