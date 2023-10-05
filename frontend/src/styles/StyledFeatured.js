@@ -2,48 +2,79 @@ import styled from "styled-components";
 
 export const StyledFeature = styled.div`
 background-color : whitesmoke;
-height : 60vh;
 width : 100%;
+
+min-height : 70vh;
+max-height : fit-content;
+
 display : flex;
 flex-direction : column;
 justify-content : flex-start;
 align-items : center;
-height : fit-content;
-padding-top : 2rem;
+padding-top : 2.2rem;
+
 h1 {
     margin-top : 1rem;
 }
 
 #wrapper {
-margin-top : 3rem;
-display : flex;
-flex-wrap : wrap;
-width : 100%;
-justify-content : space-around;
-height : fit-content;
-border-radius : 3rem;
+
+    display : flex;
+    justify-content : space-around;
+    align-items : center;
+    flex-wrap : wrap;
+    
+    width : 100%;
+    min-height : 50vh;
+
+    margin-top : 3rem;
+    max-height  : fit-content; 
 }
 .showcase {
-    flex-wrap : wrap;
+    box-shadow : 0 0 1em gray;
     display : flex;
-    justify-content : flex-start;
+    justify-content : space-around;
+    align-items : center;
 
-    .featBook {
-      width : 15rem;
-      height : 30rem;
+    flex-direction : column;
+
+    min-height : 30rem;
+    max-height : fit-content;
+
+    min-width : 15rem;
+    max-width : fit-content;
+
+    transition : 50ms ease-in-out;
+
+
+    &:hover {
+      
+      transform : scale(101%);
       transition : 50ms ease-in-out;
-      border-radius : 3rem;
-      &:hover {
-        box-shadow : 0 0 1em gray;
-        transition : 50ms ease-in-out;
-      }
+    }
+    img {
+      height : 15rem;
 }
-.second {
-    position : absolute;
-    top : 14rem;
-    left : 5rem;
-    font-weight : bold;
-}
+
+#shopNow {
+        border : none;
+        background-color : rgb(163, 74, 74);
+        width : 10vw;
+        height : 3rem;
+        color : white;
+        font-size : 20px;
+        border-radius : 2rem;
+        &:hover {
+            background-color : white;
+            color : rgb(163, 74, 74);
+            transform : scale(105%);
+            transition : 100ms ease-in-out;
+        }
+        &:active {
+            transform : scale(110%);
+        }
+    }
+
 }
 
 
@@ -55,14 +86,9 @@ border-radius : 3rem;
     padding-bottom : 3rem;
     margin-top : 0rem;
     #wrapper {
-        margin: 0;
-    }
-    .showcase {
-        .featBook {
-            flex-basis : 200px;
-            width : 70vw;
-            margin-bottom : 7rem;
+        .showcase {
+            margin-bottom : 1.5rem;
         }
-    }   
+    }
 }
 `

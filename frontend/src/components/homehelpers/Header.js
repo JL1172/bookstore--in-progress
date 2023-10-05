@@ -1,5 +1,5 @@
 import { StyledHeader } from "../../styles/StyledHeader";
-import { FaShoppingCart,FaBook } from 'react-icons/fa'
+import { FaShoppingCart, FaBook } from 'react-icons/fa'
 import { CgProfile } from 'react-icons/cg'
 import { ImSearch } from 'react-icons/im'
 import { Link } from "react-router-dom";
@@ -8,36 +8,34 @@ import { fetchingBooksSuccess } from "../redux/actions/shop-actions";
 
 
 const Header = (props) => {
-    const query = `?limit=3&page=${Math.floor(Math.random()*4 + 1)}`
+    const query = `?limit=3&page=${Math.floor(Math.random() * 4 + 1)}`
     return (
         <StyledHeader>
             <div id="topContainer">
-                <div className = "wrap" id = "book">
-                    <FaBook className="book"/>
+                <div className="wrap" id="book">
+                    <FaBook className="book" />
                     <h2>BookBinge</h2>
                 </div>
 
-                <div className = "wrap" id="searchbar">
+                <div className="wrap" id="searchbar">
                     <form>
-                        <input type="text" />
+                        <input id = "searcher" type="text" />
                         <ImSearch id="search" />
+                        <FaShoppingCart className="icons top" />
+                        <CgProfile id="profile" className="icons" />
                     </form>
                 </div>
 
-                <div className = "wrap" id="iconContainer">
-                    <FaShoppingCart className="icons top" />
-                    <CgProfile id="profile" className="icons" />
-                </div>
             </div>
             <div id="bottomContainer">
                 <div className="routes">
-                    <Link onClick={()=> props.fetchingBooksSuccess(query)} to = "/">Home</Link>
+                    <Link onClick={() => props.fetchingBooksSuccess(query)} to="/">Home</Link>
                 </div>
                 <div className="routes">
-                    <Link onClick={()=> props.fetchingBooksSuccess()} to = "/books">Shop</Link>
+                    <Link onClick={() => props.fetchingBooksSuccess()} to="/books">Shop</Link>
                 </div>
                 <div className="routes">
-                    <Link to = "/profile">Profile</Link>
+                    <Link to="/profile">Profile</Link>
                 </div>
             </div>
         </StyledHeader>
@@ -46,8 +44,8 @@ const Header = (props) => {
 
 const mapStateToProps = state => {
     return {
-        books : state.bookState.books,
+        books: state.bookState.books,
     }
 }
 
-export default connect(mapStateToProps,{fetchingBooksSuccess})(Header);
+export default connect(mapStateToProps, { fetchingBooksSuccess })(Header);

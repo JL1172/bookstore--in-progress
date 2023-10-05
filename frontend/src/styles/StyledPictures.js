@@ -34,6 +34,9 @@ align-items : center;
             transform : scale(105%);
             transition : 100ms ease-in-out;
         }
+        &:active {
+            transform : scale(110%);
+        }
     }
 }
 
