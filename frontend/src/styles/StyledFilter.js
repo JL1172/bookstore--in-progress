@@ -46,10 +46,17 @@ form {
 }
 .last {
     display : flex;
+    flex-direction : column;
+    ${props => props.removeFilterStatus &&
+    css`
+    flex-direction : row;
+    `
+    }
 
-    flex-direction  :column;
-
-
+    #firstButton {
+        margin-right : 2rem;
+        margin-left : 2rem;
+    }
     button {
         align-self : center;
         width : 15vw;

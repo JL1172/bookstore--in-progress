@@ -6,7 +6,7 @@ import { changeValue, fetchingBooksSuccess, fetchingBooksSuccessNo2, toggleRemov
 const Filter = (props) => {
     const advancedSubmit = e => {
         e.preventDefault();
-        const query = `?sortby=${props.filterHead}&sortdir=${props.sortdir}&page=all`;
+        const query = `?sortby=${props.filterHead}&sortdir=${props.sortdir}`;
         props.fetchingBooksSuccessNo2(query);
     }
     const advancedChangeHandler = (e) => {
@@ -24,10 +24,11 @@ const Filter = (props) => {
     const advancedRemove = e => {
         e.preventDefault();
         props.toggleRemoveFilter()
-        props.fetchingBooksSuccessNo2();
+        props.fetchingBooksSuccess();
     }
+    console.log()
     return (
-        <StyledFilter filterOn={props.filterOn}>
+        <StyledFilter filterOn={props.filterOn} removeFilterStatus = {props.removeFilterStatus}>
             <form onSubmit={(e) => advancedSubmit(e)}>
                 <div className="filterSection">
                     <input onChange={(e) => advancedChangeHandler(e)}
@@ -40,28 +41,31 @@ const Filter = (props) => {
                     <span>Title</span>
                 </div>
                 <div className="filterSection">
-                    <input type="radio" disabled={props.radiosDisabled} value="asc" name="sortdir"
-                        onChange={(e) => advancedChangeHandler(e)} checked={props.sortdir === "asc"} />
-
-                    <span>{props.filterHead === "book_price" ?
-                        "Most to Least Expensive" : props.filterHead === "book_title" ?
-                            "Alphabetical" : props.filterHead === "" ? "Click on Price or Title" : ""}
-                    </span>
-
-                </div>
-                <div className="filterSection">
                     <input type="radio" disabled={props.radiosDisabled} value="desc" name="sortdir"
                         onChange={(e) => advancedChangeHandler(e)} checked={props.sortdir === "desc"} />
 
                     <span>{props.filterHead === "book_price" ?
-                        "Least to Most Expensive" : props.filterHead === "book_title" ?
+                        "Most to Least Expensive" : props.filterHead === "book_title" ?
                             "Reverse Alphabetical" : props.filterHead === "" ? "Click on Price or Title" : ""}
+                    </span>
+
+                </div>
+                <div className="filterSection">
+                    <input type="radio" disabled={props.radiosDisabled} value="asc" name="sortdir"
+                        onChange={(e) => advancedChangeHandler(e)} checked={props.sortdir === "asc"} />
+
+                    <span>{props.filterHead === "book_price" ?
+                        "Least to Most Expensive" : props.filterHead === "book_title" ?
+                            "Alphabetical" : props.filterHead === "" ? "Click on Price or Title" : ""}
                     </span>
 
                 </div>
                 <div className="filterSection last">
                     { props.removeFilterStatus ?
-                    <button onClick={(e)=> advancedRemove(e)}>Remove Filter</button> :
+                    <>
+                     <button id = "firstButton" disabled={disabledHandler()}>Apply Filter</button>
+                    <button onClick={(e)=> advancedRemove(e)}>Remove Filter</button> 
+                    </>:
                     <button disabled={disabledHandler()}>Apply Filter</button>}
                 </div>
             </form>
