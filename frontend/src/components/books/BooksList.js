@@ -1,10 +1,9 @@
 import { connect } from "react-redux"
 import { StyledBook } from "../../styles/StyledBookList"
 import { fetchingBooksSuccess } from "../redux/actions/shop-actions"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { FallingLines } from "react-loader-spinner"
 import { BsBookHalf } from "react-icons/bs";
-import { BiLastPage } from "react-icons/bi";
 import { StyledContainer } from "../../styles/StyledContainer"
 
 const BooksList = (props) => {
