@@ -7,6 +7,9 @@ flex-direction : column;
 width : 100%;
 background-color : whitesmoke;
 
+position : fixed;
+top : 0;
+z-index : 2;
 
 
 
@@ -159,7 +162,8 @@ flex-wrap : wrap;
 background-color : rgb(163, 74, 74);
 a {
     color : white;
-    font-size : 20px;
+    font-size : 22px;
+    opacity : .7;
 }
 h4 {
     color : white;
@@ -176,17 +180,66 @@ a::before {
     content : "";
     position : absolute;
     border : 2px solid white;
-    left : 0rem;
-    top : 1.8rem;
+    left : 1.2rem;
+    top : 2rem;
     width : 2rem;
-    transform-origin : left;
+
     opacity : 0;
     transition : 100ms ease-in-out;
 }
 a:hover::before {
-    transform : scaleX(200%);
+    transform : scaleX(300%);
     opacity : 1;
     transition : 100ms ease-in-out; 
 }
+
+.underlined::after {
+    content : "";
+    position : absolute;
+    border : 2px solid azure;
+    top : 2rem;
+    width : 2rem;
+    left : 1.2rem;
+
+    transform : scaleX(300%);
+    opacity : 1;
+    transition : 100ms ease-in-out; 
 }
+.underlined {
+    opacity : 1;
+}
+
+#shopLink::before {
+    content : "";
+    position : absolute;
+    border : 2px solid white;
+    left : .8rem;
+    top : 2rem;
+    width : 2rem;
+
+    opacity : 0;
+    transition : 100ms ease-in-out;
+}
+#shopLink:hover::before {
+    transform : scaleX(300%);
+    opacity : 1;
+    transition : 100ms ease-in-out; 
+}
+
+
+ .shop::after {
+    content : "";
+    position : absolute;
+    border : 2px solid azure;
+    top : 2rem;
+    width : 2rem;
+    left : .8rem;
+
+    transform : scaleX(300%);
+    opacity : 1;
+    transition : 100ms ease-in-out; 
+}
+
+}
+
 `

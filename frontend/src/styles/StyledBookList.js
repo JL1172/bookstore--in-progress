@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledBook = styled.div`
 background-color : whitesmoke;
@@ -16,6 +16,23 @@ padding-top : 2.2rem;
 
 
 flex-wrap : wrap;
+
+margin-top  : 10rem;
+
+#top {
+    background-color  :white;
+    width : 100%;
+    display : flex;
+    justify-content : space-evenly;
+    align-items : center;
+    position : relative;
+    #openBook {
+        width  : 2rem;
+        height : 2rem;
+    }
+}
+
+
 
 #bookstore {
     font-size : 40px;
@@ -93,6 +110,50 @@ img {
         }
     }
 
+#filterWrap {
+    cursor: pointer;
+    display : flex;
+    align-items : center;
+    
+    #addFilterText {
+        font-size : 20px;
+    }
+   
+}
+
+#filterWrap::before {
+    content : "";
+    position : absolute;
+    border  : 2px solid whitesmoke;
+    bottom  :.5rem;
+    opacity : 0;
+    transform-origin : left;
+    transition : .2s ease-in-out;
+    width : 2rem;
+    ${props => props.filterOn &&
+    css`
+    transform : scaleX(400%);
+    opacity : 1;
+    transition : .2s ease-in-out;
+    `
+    }
+}
+
+
+#filter{
+    width : 1.2rem;
+    height : 1.2rem;
+    transition : 50ms ease-in-out;
+    transition : .1s ease-in-out;
+    ${props => props.filterOn && 
+    css`
+    transform  : rotate(45deg);
+    transition : .1s ease-in-out;
+    `
+    }
+}
+
+
 
 
 
@@ -100,7 +161,6 @@ img {
     @media screen and (max-width : 700px) {
     height : fit-content;
     padding-bottom : 3rem;
-    margin-top : 0rem;
     #wrapper {
         .showcase {
             margin-bottom : 1.5rem;
@@ -109,6 +169,26 @@ img {
     }
     #shopNow {
         width :50vw !important;
+    }
+    #addFilterText {
+        font-size : 16px !important;
+    }
+    #filterWrap::before {
+        content : "";
+        position : absolute;
+        border  : 2px solid whitesmoke;
+        bottom  :.5rem;
+        opacity : 0;
+        transform-origin : left;
+        transition : .2s ease-in-out;
+        width : 2rem;
+        ${props => props.filterOn &&
+        css`
+        transform : scaleX(350%);
+        opacity : 1;
+        transition : .2s ease-in-out;
+    `
+    }
     }
 }
 `

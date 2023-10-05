@@ -7,18 +7,24 @@ background-color : whitesmoke;
     width : 100%;
     background-color : whitesmoke;
     display  : flex;
+    height : 10vh;
     justify-content : space-evenly;
-    padding-bottom : 2rem;
+    align-items : center;
+
+    position : fixed;
+    bottom : 0;
 
     #pagecontainer {
         width  : 15vw;
         display  :flex;
+        
         justify-content : space-evenly;
+        align-self: center;
     }
     input {
         border : none;
         background-color : rgb(163, 74, 74);
-        width : 5vw;
+        width : 10vw;
         height : 3rem;
         color : white;
         font-size : 20px;

@@ -1,17 +1,21 @@
 import { connect } from "react-redux"
 import { StyledBook } from "../../styles/StyledBookList"
-import { fetchingBooksSuccess } from "../redux/actions/shop-actions"
+import { fetchingBooksSuccess, toggleFilter } from "../redux/actions/shop-actions"
 import { useEffect } from "react"
 import { FallingLines } from "react-loader-spinner"
 import { BsBookHalf } from "react-icons/bs";
+import { LuFilter } from "react-icons/lu";
+import { GrAdd } from "react-icons/gr";
 import { StyledContainer } from "../../styles/StyledContainer"
+import Filter from "./Filter"
+
 
 const BooksList = (props) => {
 
-  
+
   useEffect(() => {
     props.fetchingBooksSuccess();
-  }, [])
+  }, [])//eslint-disable-line
 
   const degressPage = (e) => {
     e.preventDefault();
@@ -29,28 +33,35 @@ const BooksList = (props) => {
     }
   }
 
+
   return (
     <StyledContainer>
-      <StyledBook>
-        <h2 id = "bookstore">Book Store
-          <BsBookHalf />
-        </h2>
-        {props.books.length === 0 ? 
-  
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft : "2rem",height: "100vh" }}>
-        <h2>
-          No more books available...
-        </h2>
+      <StyledBook filterOn = {props.filterOn}>
+        <div id="top">
+          <div onClick={() => props.toggleFilter()} id = "filterWrap">
+            <GrAdd  id="filter" />
+            <span id = "addFilterText">Add Filter</span>
+          </div>
+          <h2 id="bookstore">Book Store</h2>
+
+        </div>
+        {props.filterOn && <Filter />}
+        {props.books.length === 0 ?
+
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginLeft: "2rem", height: "60vh" }}>
+            <h2>
+              No more books available...
+            </h2>
             <FallingLines
               color="rgb(163, 74, 74)"
               width="150"
               visible={true}
               ariaLabel='falling-lines-loading'
             />
-          </div> 
+          </div>
 
-      :
-        props.spinnerOn &&
+          :
+          props.spinnerOn &&
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
             <FallingLines
               color="rgb(163, 74, 74)"
@@ -73,9 +84,9 @@ const BooksList = (props) => {
           </div>}
       </StyledBook>
       <div id="pagination">
-        <div id = "pagecontainer">
-        <input type="button" value={`Back ${props.page - 1 === 0 ? "" : props.page - 1}`} onClick={(e)=>degressPage(e)}/>
-        <input type="button" onClick={(e)=> succeedPage(e)} value={`Next ${props.page}`} />
+        <div id="pagecontainer">
+          <input type="button" value={`Back ${props.page - 1 === 0 ? "" : props.page - 1}`} onClick={(e) => degressPage(e)} />
+          <input type="button" onClick={(e) => succeedPage(e)} value={`Next ${props.page}`} />
         </div>
       </div>
     </StyledContainer>
@@ -86,8 +97,9 @@ const mapStateToProps = state => {
   return {
     books: state.bookState.books,
     spinnerOn: state.bookState.spinnerOn,
-    page : state.bookState.page,
+    page: state.bookState.page,
+    filterOn: state.bookState.filterOn,
   }
 }
 
-export default connect(mapStateToProps, { fetchingBooksSuccess })(BooksList)
+export default connect(mapStateToProps, { fetchingBooksSuccess, toggleFilter })(BooksList)

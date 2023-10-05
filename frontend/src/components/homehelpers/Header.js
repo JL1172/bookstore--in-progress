@@ -4,7 +4,7 @@ import { CgProfile } from 'react-icons/cg'
 import { ImSearch } from 'react-icons/im'
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchingBooksSuccess } from "../redux/actions/shop-actions";
+import { fetchingBooksSuccess, toggleHome, toggleProfile, toggleShop } from "../redux/actions/shop-actions";
 import { useNavigate } from "react-router-dom";
 
 
@@ -17,6 +17,26 @@ const Header = (props) => {
     }
 
     const query = `?limit=3&page=${Math.floor(Math.random() * 4 + 1)}`
+
+    const bunderFunctionForHome = (e) => {
+        e.preventDefault();
+        props.fetchingBooksSuccess(query)
+        props.toggleHome()
+        navigate("/")
+    }
+    const bunderFunctionForShop = (e) => {
+        e.preventDefault();
+        props.fetchingBooksSuccess()
+        props.toggleShop();
+        navigate("/books")
+    }
+
+    const bunderFunctionForProfile = e => {
+        e.preventDefault();
+        props.toggleProfile();
+        navigate("/profile")
+    }
+
     return (
         <StyledHeader>
             <div id="topContainer">
@@ -37,13 +57,13 @@ const Header = (props) => {
             </div>
             <div id="bottomContainer">
                 <div className="routes">
-                    <Link onClick={() => props.fetchingBooksSuccess(query)} to="/">Home</Link>
+                    <Link onClick={(e) => bunderFunctionForHome(e)} className={props.homeOn ? "underlined" : ""}>Home</Link>
                 </div>
                 <div className="routes">
-                    <Link onClick={() => props.fetchingBooksSuccess()} to="/books">Shop</Link>
+                    <Link onClick={(e) => bunderFunctionForShop(e)}  className={props.shopOn ? "underlined shop" : ""} id = "shopLink">Shop</Link>
                 </div>
                 <div className="routes">
-                    <Link to="/profile">Profile</Link>
+                    <Link onClick={(e)=> bunderFunctionForProfile(e)}  className={props.profileOn ? "underlined" : ""}>Profile</Link>
                 </div>
             </div>
         </StyledHeader>
@@ -53,7 +73,10 @@ const Header = (props) => {
 const mapStateToProps = state => {
     return {
         books: state.bookState.books,
+        homeOn :state.bookState.homeOn,
+        shopOn :state.bookState.shopOn,
+        profileOn :state.bookState.profileOn,
     }
 }
 
-export default connect(mapStateToProps, { fetchingBooksSuccess })(Header);
+export default connect(mapStateToProps, { fetchingBooksSuccess, toggleHome, toggleProfile,toggleShop })(Header);

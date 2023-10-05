@@ -8,6 +8,9 @@ display: flex;
 flex-direction : column;
 justify-content : center;
 align-items : center;
+
+margin-top  : 8rem;
+
 #content { 
     width : 50vw;
     display : flex;
