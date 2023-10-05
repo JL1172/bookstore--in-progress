@@ -41,7 +41,7 @@ h1 {
     min-height : 30rem;
     max-height : fit-content;
 
-    min-width : 15rem;
+    min-width : 20vw;
     max-width : fit-content;
 
     transition : 50ms ease-in-out;

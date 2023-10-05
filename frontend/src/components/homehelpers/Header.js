@@ -5,14 +5,22 @@ import { ImSearch } from 'react-icons/im'
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchingBooksSuccess } from "../redux/actions/shop-actions";
+import { useNavigate } from "react-router-dom";
 
 
 const Header = (props) => {
+    const navigate = useNavigate();
+    const navigateHome = (e) => {
+        e.preventDefault();
+        props.fetchingBooksSuccess(query)
+        navigate("/");
+    }
+
     const query = `?limit=3&page=${Math.floor(Math.random() * 4 + 1)}`
     return (
         <StyledHeader>
             <div id="topContainer">
-                <div className="wrap" id="book">
+                <div style ={{cursor  : "pointer"}} onClick={(e)=>navigateHome(e)} className="wrap" id="book">
                     <FaBook className="book" />
                     <h2>BookBinge</h2>
                 </div>

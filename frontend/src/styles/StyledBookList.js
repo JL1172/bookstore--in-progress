@@ -1,5 +1,114 @@
 import styled from "styled-components";
 
 export const StyledBook = styled.div`
+background-color : whitesmoke;
+width : 100%;
 
+min-height : 100vh;
+height : 200vh;
+max-height : fit-content;
+
+display : flex;
+flex-direction : column;
+justify-content : flex-start;
+align-items : center;
+padding-top : 2.2rem;
+
+
+flex-wrap : wrap;
+
+#bookstore {
+    font-size : 40px;
+}
+
+#wrapper {
+
+display : flex;
+justify-content : space-evenly;
+align-items : center;
+
+
+flex-basis : 100px;
+flex-wrap : wrap;
+
+width : 100%;
+min-height : 50vh;
+
+height : 200vh;
+
+margin-top : 3rem;
+max-height  : fit-content; 
+margin-bottom  :4rem ;
+
+
+
+}
+.showcase {
+
+background-color : white;
+box-shadow : 0 0 1em gray;
+flex-wrap : wrap;
+display : flex;
+justify-content : space-around;
+align-items : center;
+
+flex-direction : column;
+
+min-height : 30rem;
+
+max-height : fit-content;
+
+min-width : 20vw;
+max-width : fit-content;
+
+transition : 50ms ease-in-out;
+
+
+&:hover {
+  
+  transform : scale(101%);
+  transition : 50ms ease-in-out;
+}
+img {
+  height : 15rem;
+}
+}
+#shopNow {
+        border : none;
+        background-color : rgb(163, 74, 74);
+        width : 18vw;
+        height : 3rem;
+        color : white;
+        font-size : 20px;
+        border-radius : 2rem;
+        &:hover {
+            background-color : white;
+            color : rgb(163, 74, 74);
+            transform : scale(105%);
+            transition : 100ms ease-in-out;
+        }
+        &:active {
+            transform : scale(107%);
+            outline : 2px solid rgb(163, 74, 74);
+        }
+    }
+
+
+
+
+
+    @media screen and (max-width : 700px) {
+    height : fit-content;
+    padding-bottom : 3rem;
+    margin-top : 0rem;
+    #wrapper {
+        .showcase {
+            margin-bottom : 1.5rem;
+            min-width : 70vw !important;
+        }
+    }
+    #shopNow {
+        width :50vw !important;
+    }
+}
 `
