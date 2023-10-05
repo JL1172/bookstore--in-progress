@@ -1,9 +1,11 @@
 import { connect } from "react-redux"
 import { StyledFilter } from "../../styles/StyledFilter"
 import { changeValue, fetchingBooksSuccess, fetchingBooksSuccessNo2, toggleRemoveFilter } from "../redux/actions/shop-actions";
+import { useEffect, useState } from "react";
 
 
 const Filter = (props) => {
+    const [disabled,setDisabled] = useState(true)
     const advancedSubmit = e => {
         e.preventDefault();
         const query = `?sortby=${props.filterHead}&sortdir=${props.sortdir}`;
@@ -14,19 +16,21 @@ const Filter = (props) => {
         const bundler = { name: name, value: value };
         props.changeValue(bundler);
     }
-    const disabledHandler = () => {
-        if (props.filterHead && props.sortdir) {
-            return false;
+
+    useEffect(()=> {
+        if (props.filterHead && props.sortdir ) {
+            setDisabled(false)
         } else {
-            return true;
+            setDisabled(true)
         }
-    }
+    },[props.filterHead,props.sortdir])
+
     const advancedRemove = e => {
         e.preventDefault();
         props.toggleRemoveFilter()
         props.fetchingBooksSuccess();
     }
-    console.log()
+    console.log(props.filterHead,props.sortdir)
     return (
         <StyledFilter filterOn={props.filterOn} removeFilterStatus = {props.removeFilterStatus}>
             <form onSubmit={(e) => advancedSubmit(e)}>
@@ -63,10 +67,10 @@ const Filter = (props) => {
                 <div className="filterSection last">
                     { props.removeFilterStatus ?
                     <>
-                     <button id = "firstButton" disabled={disabledHandler()}>Apply Filter</button>
+                     <button id = "firstButton" >Apply Filter</button>
                     <button onClick={(e)=> advancedRemove(e)}>Remove Filter</button> 
                     </>:
-                    <button disabled={disabledHandler()}>Apply Filter</button>}
+                    <button disabled={disabled}>Apply Filter</button>}
                 </div>
             </form>
         </StyledFilter>

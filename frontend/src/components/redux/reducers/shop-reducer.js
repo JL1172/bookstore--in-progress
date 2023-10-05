@@ -30,7 +30,7 @@ export const shopReducer = (state = initialState,action) => {
             })
         case(GET_BOOKS_VARIATION) :
             return({...state, books : action.payload.result, page : Number(action.payload.page), 
-                removeFilterStatus : true,
+                removeFilterStatus : true
             })
         case(HOME_ON) :
             return({...state, homeOn  : true, shopOn : false, profileOn : false})
@@ -43,7 +43,7 @@ export const shopReducer = (state = initialState,action) => {
         case(CHANGE_FILTER_HANDLER) :
             return({...state, [action.payload.name] : action.payload.value, radiosDisabled : false})
         case(REMOVE_FILTER) :
-            return({...state, removeFilterStatus : false, filterHead : "", sortdir : ""})
+            return({...state, removeFilterStatus : false, filterHead : "", sortdir : "",radiosDisabled : true,})
         default : 
             return (state);
     }
