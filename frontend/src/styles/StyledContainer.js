@@ -34,4 +34,19 @@ background-color : whitesmoke;
         }
     }
 }
+@media screen and (max-width: 700px) {
+    #pagecontainer {
+        width  : 100vw !important;
+        display  :flex;
+        justify-content : space-evenly;
+    }
+    input {
+        border : none;
+        background-color : rgb(163, 74, 74);
+        width : 30vw !important;
+        height : 3rem;
+        color : white;
+        font-size : 20px;
+    }
+}
 `
