@@ -3,8 +3,7 @@ import { StyledBook } from "../../styles/StyledBookList"
 import { fetchingBooksSuccess, toggleFilter } from "../redux/actions/shop-actions"
 import { useEffect } from "react"
 import { FallingLines } from "react-loader-spinner"
-import { BsBookHalf } from "react-icons/bs";
-import { LuFilter } from "react-icons/lu";
+import { MdOutlineAttachMoney } from "react-icons/md";
 import { GrAdd } from "react-icons/gr";
 import { StyledContainer } from "../../styles/StyledContainer"
 import Filter from "./Filter"
@@ -74,10 +73,14 @@ const BooksList = (props) => {
         {!props.spinnerOn &&
           <div id="wrapper">
             {props.books.map(n => {
+             const first = n.book_author.split(" ");
+             const second = first.slice(0,2).join(",").replace(/,/g," "); 
               return <div style={{ marginBottom: "4rem" }} className="showcase" key={n.book_id}>
                 <div style={{ position: "relative" }}>
                   <img src={n.book_cover} alt="book" className="featBook" />
                 </div>
+                <span>By <b>{second}</b></span>
+                  <span><MdOutlineAttachMoney/><b>{n.book_price.toFixed(2)}</b></span>
                 <input id="shopNow" type="button" value="Add To Cart" />
               </div>
             })}
