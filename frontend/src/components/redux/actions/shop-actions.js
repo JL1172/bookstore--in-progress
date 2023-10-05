@@ -2,6 +2,10 @@ import axios from "axios";
 
 export const FETCHING_BOOKS = "FETCHING_BOOKS";
 export const GET_BOOKS = "GET_BOOKS";
+export const CHANGE_FILTER_HANDLER = "CHANGE_FILTER_HANDLER";
+export const REMOVE_FILTER = "REMOVE_FILTER"
+
+export const GET_BOOKS_VARIATION = "GET_BOOKS_VARIATION";
 
 export const SHOP_ON = "SHOP_ON";
 export const PROFILE_ON = "PROFILE_ON";
@@ -29,6 +33,27 @@ export const fetchingBooksSuccess = (query) => dispatch => {
 }
 
 
+export const fetchingBooksSuccessNo2 = (query) => dispatch => {
+    if (!query) {
+        dispatch(fetchingBooks(true));
+        axios.get(`http://localhost:9000/api/books`).then(res => {
+            dispatch(getBooksNo1(res.data))
+        }).catch(err => console.error(err.message))
+        setTimeout(() => {
+            dispatch(fetchingBooks(false))
+        }, 200);
+    } else {
+        dispatch(fetchingBooks(true));
+        axios.get(`http://localhost:9000/api/books${query}`).then(res => {
+            dispatch(getBooksNo1(res.data))
+        }).catch(err => console.error(err.message))
+        setTimeout(() => {
+            dispatch(fetchingBooks(false))
+        }, 200); 
+    }
+}
+
+
 const fetchingBooks = (bool) => { //loading circle
     return { type: FETCHING_BOOKS, payload: bool };
 }
@@ -38,8 +63,9 @@ const getBooks = (bookData) => { //eslint-disable-line
 }
 
 
-
-
+const getBooksNo1 = (bookData) => {
+    return{type : GET_BOOKS_VARIATION, payload : bookData}
+}
 
 
 
@@ -60,3 +86,14 @@ export const toggleProfile = () => {
 export const toggleFilter = () => {
     return {type : FILTER_ON}
 }
+
+
+
+//form filter functions
+export const changeValue = (changeBundler) => {
+    return {type : CHANGE_FILTER_HANDLER, payload : changeBundler }
+}
+export const toggleRemoveFilter = () => {
+    return {type : REMOVE_FILTER} 
+}
+//form filter functions

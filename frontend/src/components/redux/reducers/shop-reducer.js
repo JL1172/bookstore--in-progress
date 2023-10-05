@@ -1,4 +1,4 @@
-import { FETCHING_BOOKS, FILTER_ON, GET_BOOKS, HOME_ON, PROFILE_ON, SHOP_ON } from "../actions/shop-actions";
+import { CHANGE_FILTER_HANDLER, FETCHING_BOOKS, FILTER_ON, GET_BOOKS, GET_BOOKS_VARIATION, HOME_ON, PROFILE_ON, REMOVE_FILTER, SHOP_ON } from "../actions/shop-actions";
 
 
 const initialState = {
@@ -7,10 +7,18 @@ const initialState = {
     page : "",
 
     shopOn : false,
-    homeOn : true,
+    homeOn : false,
     profileOn : false,
 
     filterOn : false,
+
+
+    filterHead : "", 
+    sortdir : "",
+
+    radiosDisabled : true,
+    
+    removeFilterStatus : false,
 }
 
 export const shopReducer = (state = initialState,action) => {
@@ -18,7 +26,12 @@ export const shopReducer = (state = initialState,action) => {
         case(FETCHING_BOOKS) :
             return({...state, spinnerOn : action.payload});
         case(GET_BOOKS) :
-            return({...state, books : action.payload.result, page : Number(action.payload.page)})
+            return({...state, books : action.payload.result, page : Number(action.payload.page), 
+            })
+        case(GET_BOOKS_VARIATION) :
+            return({...state, books : action.payload.result, page : Number(action.payload.page), 
+                removeFilterStatus : true,
+            })
         case(HOME_ON) :
             return({...state, homeOn  : true, shopOn : false, profileOn : false})
         case(PROFILE_ON) :
@@ -26,7 +39,11 @@ export const shopReducer = (state = initialState,action) => {
         case(SHOP_ON) :
             return({...state, homeOn  : false, shopOn : true, profileOn : false})
         case(FILTER_ON) :
-            return({...state, filterOn : !state.filterOn})
+            return({...state, filterOn : !state.filterOn});
+        case(CHANGE_FILTER_HANDLER) :
+            return({...state, [action.payload.name] : action.payload.value, radiosDisabled : false})
+        case(REMOVE_FILTER) :
+            return({...state, removeFilterStatus : false, filterHead : "", sortdir : ""})
         default : 
             return (state);
     }
