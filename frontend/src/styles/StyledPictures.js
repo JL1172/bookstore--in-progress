@@ -23,7 +23,7 @@ align-items : center;
     #shopNow {
         border : none;
         background-color : rgb(163, 74, 74);
-        width : 10vw;
+        width : 15vw;
         height : 3rem;
         color : white;
         font-size : 20px;
@@ -40,7 +40,7 @@ align-items : center;
     }
 }
 
-@media screen and (max-width : 600px) {
+@media screen and (max-width : 700px) {
     height : 70vh;
     justify-content : center;
     flex-direction : column;

@@ -59,7 +59,7 @@ h1 {
 #shopNow {
         border : none;
         background-color : rgb(163, 74, 74);
-        width : 10vw;
+        width : 15vw;
         height : 3rem;
         color : white;
         font-size : 20px;
@@ -88,7 +88,11 @@ h1 {
     #wrapper {
         .showcase {
             margin-bottom : 1.5rem;
+            min-width : 70vw !important;
         }
+    }
+    #shopNow {
+        width :50vw !important;
     }
 }
 `
