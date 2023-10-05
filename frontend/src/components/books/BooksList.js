@@ -3,8 +3,9 @@ import { StyledBook } from "../../styles/StyledBookList"
 import { fetchingBooksSuccess, toggleFilter } from "../redux/actions/shop-actions"
 import { useEffect } from "react"
 import { FallingLines } from "react-loader-spinner"
-import { MdOutlineAttachMoney } from "react-icons/md";
+import { MdOutlineAttachMoney,MdNavigateNext } from "react-icons/md";
 import { GrAdd } from "react-icons/gr";
+
 import { StyledContainer } from "../../styles/StyledContainer"
 import Filter from "./Filter"
 
@@ -88,8 +89,8 @@ const BooksList = (props) => {
       </StyledBook>
       <div id="pagination">
         <div id="pagecontainer">
-          <input type="button" value={`Back ${props.page - 1 === 0 ? "" : props.page - 1}`} onClick={(e) => degressPage(e)} />
-          <input type="button" onClick={(e) => succeedPage(e)} value={`Next ${props.page}`} />
+          <button onClick={(e) => degressPage(e)}><MdNavigateNext className="iconN left"/>Back Page {props.page - 1 === 0 ? "" : <span className="pageHolder">{props.page - 1}</span>}</button>
+          <button  onClick={(e) => succeedPage(e)}>Next Page <span className="pageHolder">{props.page}</span><MdNavigateNext className="iconN" /></button>
         </div>
       </div>
     </StyledContainer>

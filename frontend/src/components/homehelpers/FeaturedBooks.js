@@ -1,6 +1,5 @@
 import { StyledFeature } from "../../styles/StyledFeatured";
 import { MdFavoriteBorder, MdOutlineAttachMoney } from "react-icons/md";
-import { BiBook } from "react-icons/bi";
 export default function FeaturedBooks(props) {
     const { books } = props;
 

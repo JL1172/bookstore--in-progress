@@ -13,7 +13,7 @@ const kf = keyframes`
 
 
 export const StyledFilter = styled.div`
-width : 40%;
+width : 45vw;
 display  :flex;
 align-self : flex-start;
 transform : scaleY(0%);
@@ -37,7 +37,7 @@ form {
 }
 
 .filterSection {
-    width : 60vw;
+    width : 45vw;
     border-bottom : 1px solid whitesmoke;
     padding-top : 1rem;
     input[type=radio] {
@@ -55,12 +55,13 @@ form {
 
     #firstButton {
         margin-right : 2rem;
-        margin-left : 2rem;
+        margin-left : 3rem;
     }
     button {
         align-self : center;
-        width : 15vw;
+        width : 13vw;
         border :none;
+        flex-wrap : wrap;
         color : white;
         border-radius : 10px;
         transition : .1s ease-in-out;
@@ -78,23 +79,25 @@ form {
 }
 
 
-@media screen and (max-width : 700px) {
-    width : 100%;
+@media screen and (max-width : 1000px) {
+    width : 100vw;
     .filterSection {
         width : 80vw;
+        display : flex;
+        align-items : center;
         input[type=radio] {
-            width : 1vw;
+            width : 5vw;
             height : 3vh;
         }
     }
     .last {
     display : flex;
 
-    flex-direction  :column;
     button {
         align-self : center;
-        width : 50vw;
-
+        width : 30vw !important;
+        font-size : .9rem;
+        height : 5vh;
     }
 }
 }
