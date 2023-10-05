@@ -7,7 +7,7 @@ const initialState = {
 }
 
 export const shopReducer = (state = initialState,action) => {
-    switch(action.payload) {
+    switch(action.type) {
         case(FETCHING_BOOKS) :
             return({...state, spinnerOn : action.payload});
         case(GET_BOOKS) :

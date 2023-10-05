@@ -3,8 +3,12 @@ import { FaShoppingCart,FaBook } from 'react-icons/fa'
 import { CgProfile } from 'react-icons/cg'
 import { ImSearch } from 'react-icons/im'
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchingBooksSuccess } from "../redux/actions/shop-actions";
 
-export default function Header(props) {
+
+const Header = (props) => {
+    const query = `?limit=3&page=${Math.floor(Math.random()*4 + 1)}`
     return (
         <StyledHeader>
             <div id="topContainer">
@@ -27,10 +31,10 @@ export default function Header(props) {
             </div>
             <div id="bottomContainer">
                 <div className="routes">
-                    <Link to = "/">Home</Link>
+                    <Link onClick={()=> props.fetchingBooksSuccess(query)} to = "/">Home</Link>
                 </div>
                 <div className="routes">
-                    <Link to = "/books">Shop</Link>
+                    <Link onClick={()=> props.fetchingBooksSuccess()} to = "/books">Shop</Link>
                 </div>
                 <div className="routes">
                     <Link to = "/profile">Profile</Link>
@@ -39,3 +43,11 @@ export default function Header(props) {
         </StyledHeader>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+        books : state.bookState.books,
+    }
+}
+
+export default connect(mapStateToProps,{fetchingBooksSuccess})(Header);
