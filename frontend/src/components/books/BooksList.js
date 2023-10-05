@@ -74,8 +74,10 @@ const BooksList = (props) => {
           </div>}
       </StyledBook>
       <div id="pagination">
-        <input type="button" value="back" onClick={(e)=>degressPage(e)}/>
-        <input type="button" onClick={(e)=> succeedPage(e)} value="next" />
+        <div id = "pagecontainer">
+        <input type="button" value={`Back ${props.page - 1 === 0 ? "" : props.page - 1}`} onClick={(e)=>degressPage(e)}/>
+        <input type="button" onClick={(e)=> succeedPage(e)} value={`Next ${props.page}`} />
+        </div>
       </div>
     </StyledContainer>
   )
