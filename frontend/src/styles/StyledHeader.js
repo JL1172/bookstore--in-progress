@@ -84,7 +84,6 @@ h2 {
     position : relative;
     display : flex;
 
-
     input {
         width : 50vw;
         border : 1px solid lightgray;

@@ -55,7 +55,7 @@ export const fetchingBooksSuccessNo2 = (query) => dispatch => {
 }
 
 
-const fetchingBooks = (bool) => { //loading circle
+export const fetchingBooks = (bool) => { //loading circle
     return { type: FETCHING_BOOKS, payload: bool };
 }
 

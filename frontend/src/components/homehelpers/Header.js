@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchingBooksSuccess, toggleCart, toggleHome, toggleProfile, toggleShop } from "../redux/actions/shop-actions";
 import { useNavigate } from "react-router-dom";
+import { changeHandler, fetchingBooksSuccessVariation, successGatherBooks } from "../redux/actions/search-actions";
+import { useEffect } from "react";
 
 
 const Header = (props) => {
@@ -43,6 +45,29 @@ const Header = (props) => {
         props.toggleCart();
         navigate("/cart")
     }
+    //for searchbar
+
+
+    useEffect(()=> {
+        props.successGatherBooks();
+    },[]) //eslint-disable-line
+
+
+    const submitSearch = (e) => {
+        e.stopPropagation(); 
+        e.preventDefault();
+        navigate("/books");
+        const result = props.availableBooks.map(n => {
+            if (n.book_title === props.filteredValue) {
+                return n.book_id;
+            } 
+        })
+        const result2 = result.filter(n => n);
+        props.fetchingBooksSuccessVariation(result2[0]);
+    }
+
+
+    //for searchbar
 
     return (
         <StyledHeader cartCount = {props.cartCount}>
@@ -53,8 +78,13 @@ const Header = (props) => {
                 </div>
 
                 <div className="wrap" id="searchbar">
-                    <form>
-                        <input id = "searcher" type="text" />
+                    <form onSubmit={(e)=> submitSearch(e)}>
+                        <input id = "searcher" list = "searcher2" value = {props.filteredValue} onChange={(e)=> props.changeHandler(e.target.value)}/>
+                        <datalist id = "searcher2">
+                            {props.availableBooks.map(n=> {
+                                return <option key = {n.book_id} value = {n.book_title} />
+                            })}
+                        </datalist>
                         <ImSearch id="search" />
                         <FaShoppingCart onClick={(e)=>bunderFunctionForCart(e)} className="icons top" />
                         <span id = "cartCount">{props.cartCount === 0 ? "" : props.cartCount}</span>
@@ -89,7 +119,10 @@ const mapStateToProps = state => {
         cartOn : state.bookState.cartOn,
 
         cartCount : state.cartState.cartCount,
+
+        filteredValue : state.searchState.filteredValue,
+        availableBooks : state.searchState.availableBooks,
     }
 }
 
-export default connect(mapStateToProps, { fetchingBooksSuccess, toggleHome, toggleProfile,toggleShop, toggleCart })(Header);
+export default connect(mapStateToProps, { fetchingBooksSuccess, toggleHome, toggleProfile,toggleShop, toggleCart, changeHandler, successGatherBooks, fetchingBooksSuccessVariation })(Header);

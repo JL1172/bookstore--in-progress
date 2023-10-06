@@ -39,7 +39,7 @@ const BooksList = (props) => {
     props.addItemToCart(item);
   }
  
-
+  const decider = props.filteringSearchResults ? props.filteredBooks : props.books;
   return (
     <StyledContainer>
       <StyledBook filterOn = {props.filterOn}>
@@ -79,7 +79,7 @@ const BooksList = (props) => {
         }
         {!props.spinnerOn &&
           <div id="wrapper">
-            {props.books.map(n => {
+            {decider.map(n => {
              const first = n.book_author.split(" ");
              const second = first.slice(0,2).join(",").replace(/,/g," "); 
               return <div style={{ marginBottom: "4rem" }} className="showcase" key={n.book_id}>
@@ -95,8 +95,14 @@ const BooksList = (props) => {
       </StyledBook>
       <div id="pagination">
         <div id="pagecontainer">
+        {props.filteringSearchResults ? 
+          <>
+          <button disabled = {true}><MdNavigateNext className="iconN left"/>Back Page {props.page - 1 === 0 ? "" : <span className="pageHolder">{props.page - 1}</span>}</button>
+          <button disabled = {true}>Next Page <span className="pageHolder">{props.page}</span><MdNavigateNext className="iconN" /></button></>
+          :
+          <>
           <button onClick={(e) => degressPage(e)}><MdNavigateNext className="iconN left"/>Back Page {props.page - 1 === 0 ? "" : <span className="pageHolder">{props.page - 1}</span>}</button>
-          <button  onClick={(e) => succeedPage(e)}>Next Page <span className="pageHolder">{props.page}</span><MdNavigateNext className="iconN" /></button>
+          <button  onClick={(e) => succeedPage(e)}>Next Page <span className="pageHolder">{props.page}</span><MdNavigateNext className="iconN" /></button></>}
         </div>
       </div>
     </StyledContainer>
@@ -111,6 +117,8 @@ const mapStateToProps = state => {
     filterOn: state.bookState.filterOn,
     
     itemInCarts : state.cartState.itemInCarts,
+    filteringSearchResults : state.searchState.filteringSearchResults,
+    filteredBooks : state.searchState.filteredBooks,
   }
 }
 
