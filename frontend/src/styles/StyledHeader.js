@@ -88,6 +88,7 @@ h2 {
     input {
         width : 50vw;
         border : 1px solid lightgray;
+        
         outline : none;
         padding-left  : .4rem;
         border-radius : 6px;
@@ -105,9 +106,14 @@ h2 {
             right : 2.8rem;
             top : 0rem;
             font-weight : bold;
-            ${props => props.cartCount >= 1  &&
+            ${props => props.cartCount >= 0  &&
             css`
             animation : ${kf} 1s ease-in-out forwards;
+            `
+            }
+            ${props => props.cartCount >= 10  &&
+            css`
+            right : 2.6rem;
             `
             }
 
