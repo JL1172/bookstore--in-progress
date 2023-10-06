@@ -3,6 +3,8 @@ const db = require("../../data/db-config");
 module.exports = {
     validatePost,
     validateId,
+    authenticator,
+    authenticator2
 }
 
 
@@ -35,4 +37,37 @@ async function validatePost(req, res, next) {
 }
 
 
+async function authenticator(req,res,next) {
+    try {
+        const token = process.env.TOKEN;
+        const {authorization} = req.headers;
+        if (authorization === token) {
+            next();
+        } else {
+            next({status : 403, message : "need to login"})
+        }
+    } catch (err) {
+        next(err)
+    }
+}
 
+
+async function authenticator2(req,res,next) {
+    try {
+        const {user_password, user_username} = req.body;
+        if (!user_password || !user_username) {
+            next({status : 400, message : "username and password required"})
+        } else {
+            const result = await db("users").where({user_password : user_password, user_username : user_username}).first();
+            if (!result) {
+                next({status : 400, message : "incorrect username or password"})
+            } else {
+                const token = process.env.TOKEN;
+                req.token = token; 
+                next();
+            }
+        }
+    } catch (err) {
+        next(err);
+    }
+}

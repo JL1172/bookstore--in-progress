@@ -6,11 +6,11 @@ export const GATHER_BOOKS = "GATHER_BOOKS";
 export const FILTERED_RESULTS = "FILTERED_RESULTS"; 
 export const SEARCH_MODE = "SEARCH_MODE";
 
-export const fetchingBooksSuccessVariation = (filteredValueId) => dispatch => {
+export const fetchingBooksSuccessVariation = (filteredValueId,creds) => dispatch => {
     if (filteredValueId) {
         dispatch(fetchingBooks(true));
         dispatch(searchMode(true))
-        axios.get(`http://localhost:9000/api/books/${filteredValueId}`).then(res=> {
+        axios.create({headers : {authorization : JSON.parse(window.localStorage.getItem("token"))}}).post(`http://localhost:9000/api/books/${filteredValueId}`,creds).then(res=> {
             dispatch(filteredResults(res.data)); 
         })
         setTimeout(() => {
@@ -18,7 +18,7 @@ export const fetchingBooksSuccessVariation = (filteredValueId) => dispatch => {
         }, 200);
     } else {
         dispatch(searchMode(false))
-        dispatch(fetchingBooksSuccess())
+        dispatch(fetchingBooksSuccess("",creds))
     }
 }
 
@@ -37,8 +37,9 @@ export const searchMode = (bool) => {
 
 
 //these are with each other
-export const successGatherBooks = () => dispatch => {
-    axios.get(`http://localhost:9000/api/books?limit=all`).then(res=> {
+export const successGatherBooks = (query,creds) => dispatch => {
+    const query = "limit=all"
+    axios.create({headers : {authorization : JSON.parse(window.localStorage.getItem("token"))}}).post(`http://localhost:9000/api/books?${query}`,creds).then(res=> {
         dispatch(gatherSearchOptions(res.data));
     }).catch(err => console.error(err)); 
 } 

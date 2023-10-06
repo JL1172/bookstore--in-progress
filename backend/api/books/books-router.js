@@ -1,11 +1,11 @@
 const express = require("express");
 const BookData = require("./books-model"); 
-const {validateId} = require("./books-middleware");
+const {validateId,authenticator, authenticator2} = require("./books-middleware");
 
 const router = express.Router();
 
 
-router.get("/",async(req,res,next)=> {
+router.post("/",authenticator,authenticator2,async(req,res,next)=> {
     try {
         const result = await BookData.findAll(req.query);
         res.status(200).json(result);
@@ -23,7 +23,7 @@ router.post("/",async(req,res,next)=> {
 */
 //this is only for loading
 
-router.get("/:id",validateId,async(req,res,next)=> {
+router.post("/:id",authenticator,authenticator2,validateId,async(req,res,next)=> {
     try {
         const sender = req.params.id;
         const result = await BookData.findId(sender);

@@ -14,17 +14,17 @@ import { fetchingBooksSuccessVariation } from "../redux/actions/search-actions"
 import { useNavigate } from "react-router-dom"
 
 const BooksList = (props) => {
-
+  const creds = { user_username: props.username, user_password: props.password }
 
   useEffect(() => {
-    props.fetchingBooksSuccess();
+    props.fetchingBooksSuccess("", creds);
   }, [])//eslint-disable-line
 
   const degressPage = (e) => {
     e.preventDefault();
     if (props.page > 1) {
       const query = `?page=${props.page - 1}`
-      props.fetchingBooksSuccess(query);
+      props.fetchingBooksSuccess(query, creds);
     }
   }
 
@@ -32,7 +32,7 @@ const BooksList = (props) => {
     e.preventDefault();
     if (props.page <= 6) {
       const query = `?page=${Number(props.page + 1)}`
-      props.fetchingBooksSuccess(query);
+      props.fetchingBooksSuccess(query, creds);
     }
   }
 
@@ -41,13 +41,13 @@ const BooksList = (props) => {
     props.addItemToCart(item);
   }
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const submitSearch = (e) => {
     e.stopPropagation();
     e.preventDefault();
     navigate("/books");
-    props.fetchingBooksSuccessVariation();
+    props.fetchingBooksSuccessVariation("", creds);
   }
 
 
@@ -138,7 +138,12 @@ const mapStateToProps = state => {
     itemInCarts: state.cartState.itemInCarts,
     filteringSearchResults: state.searchState.filteringSearchResults,
     filteredBooks: state.searchState.filteredBooks,
+
+
+    username: state.loginState.username,
+    password: state.loginState.password,
+    message: state.loginState.message,
   }
 }
 
-export default connect(mapStateToProps, { fetchingBooksSuccess, toggleFilter, addItemToCart,  fetchingBooksSuccessVariation })(BooksList)
+export default connect(mapStateToProps, { fetchingBooksSuccess, toggleFilter, addItemToCart, fetchingBooksSuccessVariation })(BooksList)
