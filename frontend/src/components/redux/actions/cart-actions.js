@@ -20,6 +20,6 @@ export const incrementFrequency = (idToInc,priceToInc) => {
     return{type : INCREMENT_FREQ, payload : {id: idToInc, price : priceToInc}}
 }
 
-export const decrementFrequency = (idToDec,priceToDec) => {
-    return{type : DECREMENT_FREQ, payload : {id: idToDec, price : priceToDec}}
+export const decrementFrequency = (idToDec) => {
+    return{type : DECREMENT_FREQ, payload : idToDec}
 }

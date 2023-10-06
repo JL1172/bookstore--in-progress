@@ -8,7 +8,7 @@ const Home = (props) => {
     const query = `?limit=3&page=${Math.floor(Math.random()*4 + 1)}`
     useEffect(()=> {
         props.fetchingBooksSuccess(query)
-    },[])
+    },[])//eslint-disable-line
   
     return (
         <>

@@ -30,7 +30,7 @@ const Filter = (props) => {
         props.toggleRemoveFilter()
         props.fetchingBooksSuccess();
     }
-    console.log(props.filterHead,props.sortdir)
+
     return (
         <StyledFilter filterOn={props.filterOn} removeFilterStatus = {props.removeFilterStatus}>
             <form onSubmit={(e) => advancedSubmit(e)}>

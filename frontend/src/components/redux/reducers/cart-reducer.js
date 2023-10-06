@@ -1,4 +1,4 @@
-import { ADD_ITEM, DECREMENT_FREQ, INCREMENT_FREQ, REMOVE_ITEM_FROM_CART, TOGGLE_DESCRIPTION } from "../actions/cart-actions";
+import { ADD_ITEM, DECREMENT_FREQ, REMOVE_ITEM_FROM_CART, TOGGLE_DESCRIPTION } from "../actions/cart-actions";
 
 
 const initialState = {
@@ -15,6 +15,8 @@ const initialState = {
 export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case (ADD_ITEM):
+
+            action.payload.book_price = Number(action.payload.book_price);
             const insertion = { ...action.payload, frequency: 1 };
             const found = state.itemInCarts.find(n => n.book_id === insertion.book_id);
             if (found) {
@@ -34,6 +36,10 @@ export const cartReducer = (state = initialState, action) => {
                     cartCount: state.cartCount + 1, itemInCarts: [...state.itemInCarts, insertion]
                 })
             }
+
+
+
+
         case (TOGGLE_DESCRIPTION):
             return ({ ...state, descriptionBool: !state.descriptionBool })
 
@@ -44,39 +50,31 @@ export const cartReducer = (state = initialState, action) => {
                 return ({ ...state, itemInCarts: [], cartCount: 0, total: 0 })
             } else {
                 const foundIndex = state.itemInCarts.findIndex(n => n.book_id === action.payload);
-                if (foundIndex !== -1) {
-                    const newState = [...state.itemInCarts];
-                    const countToDec = newState.at(foundIndex).frequency;
-                    const priceToDec = newState.at(foundIndex).book_price;
-                    newState.splice(foundIndex, 1);
-                    return ({ ...state, total : state.total - priceToDec, cartCount : state.cartCount - countToDec,
-                         itemInCarts: newState })
-                } else {
-                    return state;
-                }
+                const insertion1 = [...state.itemInCarts];
+
+
+                const frequencyDrop = insertion1.at(foundIndex).frequency;
+                const priceDrop = insertion1.at(foundIndex).book_price * frequencyDrop;
+
+
+                insertion1.splice(foundIndex, 1);
+
+
+                return ({
+                    ...state, cartCount: state.cartCount - frequencyDrop, total: state.total - priceDrop,
+                    itemInCarts: insertion1,
+                })
             }
-
         case (DECREMENT_FREQ):
-            return ({
-                ...state,cartCount : state.cartCount - 1, total: state.total - action.payload.price, itemInCarts: state.itemInCarts.map(n => {
-                    if (n.book_id === action.payload.id) {
-                        return { ...n, frequency: n.frequency - 1 }
-                    } else {
-                        return n;
-                    }
-                })
-            })
+            const foundIndex = state.itemInCarts.findIndex(n => n.book_id === action.payload);
+            const insert = [...state.itemInCarts];
 
-        case (INCREMENT_FREQ):
-            return ({
-                ...state, cartCount : state.cartCount + 1, total: state.total + action.payload.price, itemInCarts: state.itemInCarts.map(n => {
-                    if (n.book_id === action.payload.id) {
-                        return { ...n, frequency: n.frequency + 1 }
-                    } else {
-                        return n;
-                    }
-                })
-            })
+            const priceDrop = insert.at(foundIndex).book_price; //drop cart total
+
+
+            insert.at(foundIndex).frequency = insert.at(foundIndex).frequency - 1;
+            
+                return({...state, cartCount : state.cartCount - 1, total : state.total - priceDrop, itemInCarts : insert})
         default:
             return (state);
     }

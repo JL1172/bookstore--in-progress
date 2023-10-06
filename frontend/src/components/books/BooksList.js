@@ -87,7 +87,7 @@ const BooksList = (props) => {
                   <img src={n.book_cover} alt="book" className="featBook" />
                 </div>
                 <span>By <b>{second}</b></span>
-                  <span><MdOutlineAttachMoney/><b>{n.book_price.toFixed(2)}</b></span>
+                  <span><MdOutlineAttachMoney/><b>{Number(n.book_price.toFixed(2))}</b></span>
                 <input id="shopNow" type="button" value="Add To Cart" onClick={(e)=> addItem(e,n)} />
               </div>
             })}
