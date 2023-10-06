@@ -31,7 +31,7 @@ return (
                    </div>    
                    <div className="row3">
                        <button><GrFormAdd className="icN"/></button>
-                       <span>2</span>
+                       <span>{n.frequency}</span>
                        <button><GrFormSubtract className="icN"/></button>
                    </div>
                    <div className="row2">

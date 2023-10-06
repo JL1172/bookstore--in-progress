@@ -13,7 +13,7 @@ const initialState = {
 export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case (ADD_ITEM):
-            const insertion = { ...action.payload, frequency: 0 };
+            const insertion = { ...action.payload, frequency: 1 };
             const found = state.itemInCarts.find(n=> n.book_id === insertion.book_id);
             if (found) {
                 return{...state, itemInCarts : state.itemInCarts.map(n=> {
