@@ -106,7 +106,7 @@ h2 {
             right : 2.8rem;
             top : 0rem;
             font-weight : bold;
-            ${props => props.cartCount >= 0  &&
+            ${props => props.cartCount >= 1  &&
             css`
             animation : ${kf} 1s ease-in-out forwards;
             `

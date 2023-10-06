@@ -88,6 +88,8 @@ max-height : fit-content;
 #checkout {
     border : 2px solid black;
     display : flex;
+    justify-content : flex-end;
+    padding-right : 1rem;
 
     height : fit-content;
     min-height : 12vh;
@@ -96,6 +98,15 @@ max-height : fit-content;
     margin-bottom : 1rem;
 
     padding : .4rem;
+
+
+    #col {
+        display : flex;
+        flex-direction : column;
+        span {
+            color : lightgray;
+        }
+    }
 }
 
 
@@ -118,7 +129,7 @@ max-height : fit-content;
         border : none;
         background-color : lightgray;
         border-radius : 10rem;
-        width : 2vw;
+        width : 2rem;
         height : 2rem;
         display : flex;
         justify-content : center;
@@ -188,7 +199,7 @@ max-height : fit-content;
 
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1000px) {
     #cartContainer {
         width : 100%;
         display : flex;
@@ -202,8 +213,8 @@ max-height : fit-content;
     border-bottom : 2px solid lightgray;
     flex-wrap : wrap;
     img {
-        width : 20vw;
-        height : 12vh;
+        width : 30%;
+        height : 25%;
         box-shadow : 0 0 2em lightgray;
     }
 }

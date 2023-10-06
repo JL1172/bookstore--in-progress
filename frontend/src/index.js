@@ -9,7 +9,7 @@ import { applyMiddleware, compose, legacy_createStore as createStore } from 'red
 import { rootReducer } from './components/redux/reducers/root-reducer';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import persistState from 'redux-localstorage'
+import persistState from 'redux-localstorage' //eslint-disable-line
 
 
 const enhancers =  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
