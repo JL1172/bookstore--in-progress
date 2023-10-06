@@ -4,7 +4,7 @@ import { GrFormAdd, GrFormSubtract} from "react-icons/gr";
 
 import {TfiMoreAlt} from 'react-icons/tfi';
 import {MdAttachMoney} from 'react-icons/md';
-import { removeItem } from "../redux/actions/cart-actions";
+import { decrementFrequency, incrementFrequency, removeItem } from "../redux/actions/cart-actions";
 
 
 const CartBody = (props) => {
@@ -32,9 +32,9 @@ return (
                    <span id = "spanMore"><TfiMoreAlt id = "more"/>Description</span>
                    </div>    
                    <div className="row3">
-                       <button><GrFormAdd className="icN"/></button>
+                       <button onClick={(e)=> props.incrementFrequency(n.book_id,n.book_price)} ><GrFormAdd className="icN"/></button>
                        <span>{n.frequency}</span>
-                       <button><GrFormSubtract className="icN"/></button>
+                       <button disabled = {n.frequency === 1} onClick={(e)=> props.decrementFrequency(n.book_id,n.book_price)}><GrFormSubtract className="icN"/></button>
                    </div>
                    <div className="row2">
                        <b><MdAttachMoney/>{n.book_price.toFixed(2)}</b>
@@ -67,4 +67,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps,{removeItem})(CartBody);
+export default connect(mapStateToProps,{removeItem,  incrementFrequency,  decrementFrequency})(CartBody);
