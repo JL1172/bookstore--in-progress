@@ -16,7 +16,7 @@ export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case (ADD_ITEM):
 
-            action.payload.book_price = Number(action.payload.book_price);
+            action.payload.book_price = Number(action.payload.book_price.toFixed(2));
             const insertion = { ...action.payload, frequency: 1 };
             const found = state.itemInCarts.find(n => n.book_id === insertion.book_id);
             if (found) {
@@ -49,6 +49,9 @@ export const cartReducer = (state = initialState, action) => {
             if (action.payload === "all") {
                 return ({ ...state, itemInCarts: [], cartCount: 0, total: 0 })
             } else {
+                if (state.cartCount.length === 1) {
+                    return ({ ...state, itemInCarts: [], cartCount: 0, total: 0 })
+                } else {
                 const foundIndex = state.itemInCarts.findIndex(n => n.book_id === action.payload);
                 const insertion1 = [...state.itemInCarts];
 
@@ -65,6 +68,7 @@ export const cartReducer = (state = initialState, action) => {
                     itemInCarts: insertion1,
                 })
             }
+        }
         case (DECREMENT_FREQ):
             const foundIndex = state.itemInCarts.findIndex(n => n.book_id === action.payload);
             const insert = [...state.itemInCarts];
