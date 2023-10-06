@@ -47,8 +47,9 @@ export const cartReducer = (state = initialState, action) => {
                 if (foundIndex !== -1) {
                     const newState = [...state.itemInCarts];
                     const countToDec = newState.at(foundIndex).frequency;
+                    const priceToDec = newState.at(foundIndex).book_price;
                     newState.splice(foundIndex, 1);
-                    return ({ ...state, cartCount : state.cartCount - countToDec,
+                    return ({ ...state, total : state.total - priceToDec, cartCount : state.cartCount - countToDec,
                          itemInCarts: newState })
                 } else {
                     return state;

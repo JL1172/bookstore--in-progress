@@ -86,27 +86,55 @@ max-height : fit-content;
 
 
 #checkout {
-    border : 2px solid black;
+
     display : flex;
-    justify-content : flex-end;
+    justify-content : space-evenly;
     padding-right : 1rem;
 
-    height : fit-content;
-    min-height : 12vh;
-    flex-wrap : wrap;
+    flex-direction : column;
 
+    height : fit-content;
+    min-height : 14vh;
+    flex-wrap : wrap;
+    width : 40vh;
     margin-bottom : 1rem;
+
+    align-self : flex-end;
 
     padding : .4rem;
 
 
     #col {
         display : flex;
-        flex-direction : column;
+        flex-direction : row;
+        width : 100%;
+        justify-content : space-between;
         span {
             color : lightgray;
         }
     }
+    #reducer {
+        display : flex;
+        flex-direction : column;
+    }
+    #checkoutButton {
+        border : none;
+        border-radius : 2rem;
+        height : 2rem;
+        color : black;
+        &:hover {
+            box-shadow : 0 0 .2em lightgray;
+            transition : 25ms ease-in-out;
+            background-color : white;
+        }
+        &:active {
+            outline : 2px solid whitesmoke;
+            outline-offset : 8px;
+            transform : scale(105%); 
+            transition : 100ms ease-in-out;
+        }
+    }
+
 }
 
 
@@ -223,4 +251,19 @@ max-height : fit-content;
     flex-wrap : wrap;
 }
 }
+
+
+#col {
+        display : flex;
+        flex-direction : row;
+        width : 100%;
+        justify-content : space-between;
+        span {
+            color : lightgray;
+        }
+    }
+    #reducer {
+        display : flex;
+        flex-direction : column;
+    }
 `
