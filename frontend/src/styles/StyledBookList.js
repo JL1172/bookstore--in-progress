@@ -4,8 +4,8 @@ export const StyledBook = styled.div`
 background-color : whitesmoke;
 width : 100%;
 
-min-height : 100vh;
-height : 200vh;
+min-height : 220vh;
+height : fit-content;
 max-height : fit-content;
 
 display : flex;
