@@ -1,4 +1,26 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+
+const kf = keyframes`
+0% {
+
+}
+20% {
+    transform : translateY(-1rem);
+    opacity : 1;
+}
+40% {
+    transform : translateY(-.7rem); 
+}
+70% {
+    transform : translateY(-1rem); 
+}
+90% {
+    transform : translateY(-.7rem); 
+}
+100% {
+    transform : translateY(-.8rem); 
+}
+`
 
 export const StyledHeader = styled.div`
 
@@ -77,7 +99,19 @@ h2 {
         }
     }
      form {
+        position : relative;  
+        #cartCount {
+            position : absolute;
+            right : 2.8rem;
+            top : 0rem;
+            font-weight : bold;
+            ${props => props.cartCount >= 1  &&
+            css`
+            animation : ${kf} 1s ease-in-out forwards;
+            `
+            }
 
+        }
         .icons {
             width : 1.5rem;
             height : 1.5rem;
@@ -205,6 +239,36 @@ a:hover::before {
     opacity : 1;
     transition : 100ms ease-in-out; 
 }
+.underlined2::after {
+    content : "";
+    position : absolute;
+    border : 2px solid azure;
+    top : 2rem;
+    width : 2rem;
+    left : .6rem;
+
+    transform : scaleX(300%);
+    opacity : 1;
+    transition : 100ms ease-in-out; 
+}
+.underlined3::after {
+    content : "";
+    position : absolute;
+    border : 2px solid azure;
+    top : 2rem;
+    width : 2rem;
+    left : .9rem;
+
+    transform : scaleX(300%);
+    opacity : 1;
+    transition : 100ms ease-in-out; 
+}
+.underlined3 {
+    opacity : 1;
+}
+.underlined2 {
+    opacity : 1;
+}
 .underlined {
     opacity : 1;
 }
@@ -213,19 +277,34 @@ a:hover::before {
     content : "";
     position : absolute;
     border : 2px solid white;
-    left : .8rem;
+    left : .9rem;
     top : 2rem;
     width : 2rem;
 
     opacity : 0;
     transition : 100ms ease-in-out;
 }
-#shopLink:hover::before {
+#shopLink:hover::before{
     transform : scaleX(300%);
     opacity : 1;
     transition : 100ms ease-in-out; 
 }
+#shopLink2::before {
+    content : "";
+    position : absolute;
+    border : 2px solid white;
+    left : .6rem;
+    top : 2rem;
+    width : 2rem;
 
+    opacity : 0;
+    transition : 100ms ease-in-out;
+}
+#shopLink2:hover::before {
+    transform : scaleX(300%);
+    opacity : 1;
+    transition : 100ms ease-in-out; 
+}
 
  .shop::after {
     content : "";

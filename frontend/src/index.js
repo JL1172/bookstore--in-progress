@@ -11,9 +11,10 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import persistState from 'redux-localstorage'
 
+
 const enhancers =  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(rootReducer,enhancers(applyMiddleware(thunk)))
+const store = createStore(rootReducer,enhancers(applyMiddleware(thunk),persistState(null,"")))
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store = {store}>

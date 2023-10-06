@@ -4,6 +4,7 @@ import Header from './components/homehelpers/Header';
 import { StyledApp } from './styles/StyledApp';
 import BooksList from './components/books/BooksList';
 import Home from './components/homehelpers/Home';
+import CartBody from "./components/cart/Cart"
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path = "/" element = {<Home />} />
         <Route path="/books" element={<BooksList />} />
+        <Route path = "/cart" element = {<CartBody />} />
       </Routes>
     </StyledApp>
   );

@@ -11,6 +11,7 @@ export const SHOP_ON = "SHOP_ON";
 export const PROFILE_ON = "PROFILE_ON";
 export const HOME_ON = "HOME_ON";
 export const FILTER_ON = "FILTER_ON";
+export const CART_ON = "CART_ON";
 
 export const fetchingBooksSuccess = (query) => dispatch => {
     if (!query) {
@@ -86,7 +87,9 @@ export const toggleProfile = () => {
 export const toggleFilter = () => {
     return {type : FILTER_ON}
 }
-
+export const toggleCart = () => {
+    return {type : CART_ON}
+}
 
 
 //form filter functions

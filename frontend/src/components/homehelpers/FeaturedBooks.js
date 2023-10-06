@@ -1,8 +1,13 @@
+import { connect } from "react-redux";
 import { StyledFeature } from "../../styles/StyledFeatured";
 import { MdFavoriteBorder, MdOutlineAttachMoney } from "react-icons/md";
-export default function FeaturedBooks(props) {
+import { addItemToCart } from "../redux/actions/cart-actions";
+const FeaturedBooks = (props) => {
     const { books } = props;
-
+    const addItem = (e,item) => {
+        e.preventDefault();
+        props.addItemToCart(item);
+      }
     return (
         <StyledFeature>
             <h1><MdFavoriteBorder />Featured</h1>
@@ -16,10 +21,17 @@ export default function FeaturedBooks(props) {
                         </div>
                         <span>By <b>{second}</b></span>
                         <span><MdOutlineAttachMoney /><b>{n.book_price.toFixed(2)}</b></span>
-                        <input id="shopNow" type="button" value="Add To Cart" />
+                        <input id="shopNow" type="button" value="Add To Cart" onClick={(e)=> addItem(e,n)} />
                     </div>
                 })}
             </div>
         </StyledFeature>
     )
 }
+const mapStateToProps = state => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps,{addItemToCart})(FeaturedBooks)

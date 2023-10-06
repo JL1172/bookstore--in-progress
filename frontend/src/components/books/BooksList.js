@@ -8,6 +8,7 @@ import { GrAdd } from "react-icons/gr";
 
 import { StyledContainer } from "../../styles/StyledContainer"
 import Filter from "./Filter"
+import { addItemToCart } from "../redux/actions/cart-actions"
 
 
 const BooksList = (props) => {
@@ -33,6 +34,11 @@ const BooksList = (props) => {
     }
   }
 
+  const addItem = (e,item) => {
+    e.preventDefault();
+    props.addItemToCart(item);
+  }
+ 
 
   return (
     <StyledContainer>
@@ -82,7 +88,7 @@ const BooksList = (props) => {
                 </div>
                 <span>By <b>{second}</b></span>
                   <span><MdOutlineAttachMoney/><b>{n.book_price.toFixed(2)}</b></span>
-                <input id="shopNow" type="button" value="Add To Cart" />
+                <input id="shopNow" type="button" value="Add To Cart" onClick={(e)=> addItem(e,n)} />
               </div>
             })}
           </div>}
@@ -103,7 +109,9 @@ const mapStateToProps = state => {
     spinnerOn: state.bookState.spinnerOn,
     page: state.bookState.page,
     filterOn: state.bookState.filterOn,
+    
+    itemInCarts : state.cartState.itemInCarts,
   }
 }
 
-export default connect(mapStateToProps, { fetchingBooksSuccess, toggleFilter })(BooksList)
+export default connect(mapStateToProps, { fetchingBooksSuccess, toggleFilter, addItemToCart })(BooksList)

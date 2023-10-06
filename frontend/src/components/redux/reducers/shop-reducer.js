@@ -1,4 +1,4 @@
-import { CHANGE_FILTER_HANDLER, FETCHING_BOOKS, FILTER_ON, GET_BOOKS, GET_BOOKS_VARIATION, HOME_ON, PROFILE_ON, REMOVE_FILTER, SHOP_ON } from "../actions/shop-actions";
+import { CART_ON, CHANGE_FILTER_HANDLER, FETCHING_BOOKS, FILTER_ON, GET_BOOKS, GET_BOOKS_VARIATION, HOME_ON, PROFILE_ON, REMOVE_FILTER, SHOP_ON } from "../actions/shop-actions";
 
 
 const initialState = {
@@ -9,6 +9,7 @@ const initialState = {
     shopOn : false,
     homeOn : false,
     profileOn : false,
+    cartOn : false,
 
     filterOn : false,
 
@@ -33,11 +34,13 @@ export const shopReducer = (state = initialState,action) => {
                 removeFilterStatus : true
             })
         case(HOME_ON) :
-            return({...state, homeOn  : true, shopOn : false, profileOn : false})
+            return({...state, homeOn  : true, shopOn : false,  cartOn : false, profileOn : false})
         case(PROFILE_ON) :
-            return({...state, homeOn  : false, shopOn : false, profileOn : true})
+            return({...state, homeOn  : false, shopOn : false,  cartOn : false, profileOn : true})
         case(SHOP_ON) :
-            return({...state, homeOn  : false, shopOn : true, profileOn : false})
+            return({...state, homeOn  : false, shopOn : true,  cartOn : false, profileOn : false})
+        case(CART_ON) :
+            return({...state, homeOn  : false, shopOn : false, profileOn : false, cartOn : true})
         case(FILTER_ON) :
             return({...state, filterOn : !state.filterOn});
         case(CHANGE_FILTER_HANDLER) :

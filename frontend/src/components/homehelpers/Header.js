@@ -1,14 +1,16 @@
 import { StyledHeader } from "../../styles/StyledHeader";
-import { FaShoppingCart, FaBook } from 'react-icons/fa'
+import {  FaBook,FaShoppingCart } from 'react-icons/fa'
 import { CgProfile } from 'react-icons/cg'
 import { ImSearch } from 'react-icons/im'
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchingBooksSuccess, toggleHome, toggleProfile, toggleShop } from "../redux/actions/shop-actions";
+import { fetchingBooksSuccess, toggleCart, toggleHome, toggleProfile, toggleShop } from "../redux/actions/shop-actions";
 import { useNavigate } from "react-router-dom";
 
 
 const Header = (props) => {
+    
+
     const navigate = useNavigate();
     const navigateHome = (e) => {
         e.preventDefault();
@@ -36,9 +38,14 @@ const Header = (props) => {
         props.toggleProfile();
         navigate("/profile")
     }
+    const bunderFunctionForCart = e => {
+        e.preventDefault();
+        props.toggleCart();
+        navigate("/cart")
+    }
 
     return (
-        <StyledHeader>
+        <StyledHeader cartCount = {props.cartCount}>
             <div id="topContainer">
                 <div style ={{cursor  : "pointer"}} onClick={(e)=>navigateHome(e)} className="wrap" id="book">
                     <FaBook className="book" />
@@ -49,21 +56,24 @@ const Header = (props) => {
                     <form>
                         <input id = "searcher" type="text" />
                         <ImSearch id="search" />
-                        <FaShoppingCart className="icons top" />
+                        <FaShoppingCart onClick={(e)=>bunderFunctionForCart(e)} className="icons top" />
+                        <span id = "cartCount">{props.cartCount === 0 ? "" : props.cartCount}</span>
                         <CgProfile id="profile" className="icons" />
                     </form>
                 </div>
-
             </div>
             <div id="bottomContainer">
                 <div className="routes">
                     <Link onClick={(e) => bunderFunctionForHome(e)} className={props.homeOn ? "underlined" : ""}>Home</Link>
                 </div>
                 <div className="routes">
-                    <Link onClick={(e) => bunderFunctionForShop(e)}  className={props.shopOn ? "underlined shop" : ""} id = "shopLink">Shop</Link>
+                    <Link onClick={(e) => bunderFunctionForShop(e)}  className={props.shopOn ? "underlined3" : ""} id = "shopLink" >Shop</Link>
                 </div>
                 <div className="routes">
                     <Link onClick={(e)=> bunderFunctionForProfile(e)}  className={props.profileOn ? "underlined" : ""}>Profile</Link>
+                </div>
+                <div className="routes">
+                    <Link onClick={(e)=>bunderFunctionForCart(e)} className={props.cartOn ? "underlined2" : ""} id = "shopLink2">Cart</Link>
                 </div>
             </div>
         </StyledHeader>
@@ -76,7 +86,10 @@ const mapStateToProps = state => {
         homeOn :state.bookState.homeOn,
         shopOn :state.bookState.shopOn,
         profileOn :state.bookState.profileOn,
+        cartOn : state.bookState.cartOn,
+
+        cartCount : state.cartState.cartCount,
     }
 }
 
-export default connect(mapStateToProps, { fetchingBooksSuccess, toggleHome, toggleProfile,toggleShop })(Header);
+export default connect(mapStateToProps, { fetchingBooksSuccess, toggleHome, toggleProfile,toggleShop, toggleCart })(Header);
