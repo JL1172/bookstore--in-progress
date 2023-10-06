@@ -73,12 +73,14 @@ max-height : fit-content;
 
 .itemDiv {
     display : flex;
-    border-bottom : 1px solid whitesmoke;
+    border-bottom : 2px solid whitesmoke;
     justify-content : space-evenly;
     flex-wrap : wrap;
-    margin-bottom : 2rem;
+    margin-bottom : 3rem;
+    padding-bottom : 1.5rem;
     img {
         width : 10vw;
+        box-shadow : 0 0 2em lightgray;
     }
 }
 
