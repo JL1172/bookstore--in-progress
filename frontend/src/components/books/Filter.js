@@ -2,6 +2,7 @@ import { connect } from "react-redux"
 import { StyledFilter } from "../../styles/StyledFilter"
 import { changeValue, fetchingBooksSuccess, fetchingBooksSuccessNo2, toggleRemoveFilter } from "../redux/actions/shop-actions";
 import { useEffect, useState } from "react";
+import {AiOutlineClose} from "react-icons/ai"; 
 
 
 const Filter = (props) => {
@@ -33,6 +34,9 @@ const Filter = (props) => {
 
     return (
         <StyledFilter filterOn={props.filterOn} removeFilterStatus = {props.removeFilterStatus}>
+            {props.filteringSearchResults ? 
+                    <AiOutlineClose />
+            :
             <form onSubmit={(e) => advancedSubmit(e)}>
                 <div className="filterSection">
                     <input onChange={(e) => advancedChangeHandler(e)}
@@ -72,7 +76,7 @@ const Filter = (props) => {
                     </>:
                     <button disabled={disabled}>Apply Filter</button>}
                 </div>
-            </form>
+            </form>}
         </StyledFilter>
     )
 }
@@ -84,6 +88,9 @@ const mapStateToProps = state => {
         sortdir: state.bookState.sortdir,
         radiosDisabled: state.bookState.radiosDisabled,
         removeFilterStatus: state.bookState.removeFilterStatus,
+
+      
+
     }
 }
-export default connect(mapStateToProps, { changeValue, fetchingBooksSuccess, toggleRemoveFilter, fetchingBooksSuccessNo2 })(Filter);
+export default connect(mapStateToProps, { changeValue, fetchingBooksSuccess, toggleRemoveFilter, fetchingBooksSuccessNo2, })(Filter);

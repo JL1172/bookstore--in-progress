@@ -12,7 +12,7 @@ export const fetchingBooksSuccessVariation = (filteredValueId) => dispatch => {
         dispatch(searchMode(true))
         axios.get(`http://localhost:9000/api/books/${filteredValueId}`).then(res=> {
             dispatch(filteredResults(res.data)); 
-        }).then(err=> console.error(err)); 
+        })
         setTimeout(() => {
             dispatch(fetchingBooks(false))
         }, 200);

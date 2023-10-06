@@ -57,7 +57,7 @@ const Header = (props) => {
         e.stopPropagation(); 
         e.preventDefault();
         navigate("/books");
-        const result = props.availableBooks.map(n => {
+        const result = props.availableBooks.map(n => { //eslint-disable-line
             if (n.book_title === props.filteredValue) {
                 return n.book_id;
             } 

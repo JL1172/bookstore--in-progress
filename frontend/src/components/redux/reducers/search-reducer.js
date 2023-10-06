@@ -2,26 +2,30 @@ import { CHANGE_HANDLER, FILTERED_RESULTS, GATHER_BOOKS, SEARCH_MODE } from "../
 
 
 const initialState = {
-    availableBooks : [],
+    availableBooks: [],
 
-    filteredValue : "",
+    filteredValue: "",
 
-    filteredBooks : [],
+    filteredBooks: [],
 
-    filteringSearchResults : false,
+    filteringSearchResults: false,
 }
 
-export const searchReducer = (state = initialState,action) => {
-    switch(action.type) {
-        case(GATHER_BOOKS) :
-            return({...state, availableBooks : action.payload})
-        case(CHANGE_HANDLER) :
-            return({...state, filteredValue : action.payload})
-        case(SEARCH_MODE) :
-            return({...state, filteringSearchResults : action.payload})
-        case(FILTERED_RESULTS) :
-            return({...state, filteredBooks : action.payload})
-        default :
-            return(state);
+export const searchReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case (GATHER_BOOKS):
+            return ({ ...state, availableBooks: action.payload })
+        case (CHANGE_HANDLER):
+            return ({ ...state, filteredValue: action.payload })
+        case (SEARCH_MODE):
+            if (!action.payload) {
+                return ({ ...state, filteringSearchResults: action.payload, filteredValue: "" })
+            } else {
+                return ({ ...state, filteringSearchResults: action.payload })
+            }
+        case (FILTERED_RESULTS):
+            return ({ ...state, filteredBooks: action.payload })
+        default:
+            return (state);
     }
 } 
