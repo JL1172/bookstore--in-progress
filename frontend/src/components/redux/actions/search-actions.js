@@ -34,8 +34,6 @@ export const searchMode = (bool) => {
 
 
 
-
-
 //these are with each other
 export const successGatherBooks = (query,creds) => dispatch => {
     const query = "limit=all"
