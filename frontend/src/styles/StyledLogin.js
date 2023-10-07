@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 
 const fallingDrop = keyframes`
@@ -104,16 +104,30 @@ form {
 .float {
     position : relative;
   
-    .floater {
+    .floater1 {
         color : gray;
 
         position : absolute;
         top : .5rem;
         left : 1rem;
         transition : .2s ease-in-out;
+        transform : ${props => props.username ? "translateX(18vw)" : ""};
+    }
+    .floater2 {
+        color : gray;
+
+        position : absolute;
+        top : .5rem;
+        left : 1rem;
+        transition : .2s ease-in-out;
+        transform : ${props => props.password ? "translateX(18vw)" : ""};
     }
     &:hover {
-        .floater {
+        .floater1 {
+            transform  : translateY(-1.8rem); 
+            transition : .3s ease-in-out;
+        }
+        .floater2 {
             transform  : translateY(-1.8rem); 
             transition : .3s ease-in-out;
         }
@@ -284,6 +298,27 @@ form {
             width : 80vw;
 
         }
+    }
+    .first {
+        margin-bottom : 1rem;
+    }
+    .floater2 {
+        color : gray;
+
+        position : absolute;
+        top : .5rem;
+        left : 1rem;
+        transition : .2s ease-in-out;
+        transform : ${props => props.password ? "translateX(50vw)" : ""} !important;
+    }
+    .floater1 {
+        color : gray;
+
+        position : absolute;
+        top : .5rem;
+        left : 1rem;
+        transition : .2s ease-in-out;
+        transform : ${props => props.password ? "translateX(50vw)" : ""} !important;
     }
 }
 `
