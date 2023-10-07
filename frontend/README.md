@@ -27,3 +27,6 @@ Welcome to the README for the Bookstore Application! This project is a full-stac
 To run the application locally, follow these steps:
 
 > [!IMPORTANT] this section is in progress to make the installation and setup process more concise.
+
+
+# Here are the following endpoints used and their purposes
