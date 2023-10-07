@@ -34,7 +34,7 @@ const CartBody = (props) => {
                             <div className="row3">
                                 <button onClick={(e) => props.addItemToCart(n)} ><GrFormAdd className="icN" /></button>
                                 <span>{n.frequency}</span>
-                                <button disabled={n.frequency === 1} onClick={(e) => props.decrementFrequency(n.book_id)}><GrFormSubtract className="icN" /></button>
+                                <button disabled={n.frequency <= 1} onClick={(e) => props.decrementFrequency(n.book_id)}><GrFormSubtract className="icN" /></button>
                             </div>
                             <div className="row2">
                                 <b><MdAttachMoney />{n.book_price.toFixed(2)}</b>

@@ -111,7 +111,7 @@ form {
         top : .5rem;
         left : 1rem;
         transition : .2s ease-in-out;
-        transform : ${props => props.username ? "translateX(18vw)" : ""};
+        transform : ${props => props.username ? "translateX(18rem)" : ""};
     }
     .floater2 {
         color : gray;
@@ -120,7 +120,7 @@ form {
         top : .5rem;
         left : 1rem;
         transition : .2s ease-in-out;
-        transform : ${props => props.password ? "translateX(18vw)" : ""};
+        transform : ${props => props.password ? "translateX(18rem)" : ""};
     }
     &:hover {
         .floater1 {
@@ -291,7 +291,7 @@ form {
 
 
 
-@media screen and (max-width : 700px) {
+@media screen and (max-width : 600px) {
     form {
         width : 90vw;
         #formContainer {
@@ -302,6 +302,9 @@ form {
     .first {
         margin-bottom : 1rem;
     }
+
+
+
     .floater2 {
         color : gray;
 
@@ -318,7 +321,8 @@ form {
         top : .5rem;
         left : 1rem;
         transition : .2s ease-in-out;
-        transform : ${props => props.password ? "translateX(50vw)" : ""} !important;
+        transform : ${props => props.username ? "translateX(50vw)" : ""}!important;
     }
 }
+
 `

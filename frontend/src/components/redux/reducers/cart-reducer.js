@@ -49,7 +49,7 @@ export const cartReducer = (state = initialState, action) => {
             if (action.payload === "all") {
                 return ({ ...state, itemInCarts: [], cartCount: 0, total: 0 })
             } else {
-                if (state.cartCount.length === 1) {
+                if (state.cartCount === 1) {
                     return ({ ...state, itemInCarts: [], cartCount: 0, total: 0 })
                 } else {
                 const foundIndex = state.itemInCarts.findIndex(n => n.book_id === action.payload);
