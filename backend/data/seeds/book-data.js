@@ -55,7 +55,7 @@ exports.seed = async function(knex) {
       book_year: 2006,
       book_edition: "N/A",
       book_pages: 314,
-      book_cover: "http://libgen.org/covers/119000/f317bc40ec89d98e867b2099c4341a68.jpg",
+      book_cover: "http://libgen.org/covers/117000/f317bc40ec89d98e867b2099c4341a68.jpg",
       book_price : ((Math.random()*50) + 1).toFixed(2),
       book_description: "*  This Starter Kit serves as an entry-level introduction...",
     },

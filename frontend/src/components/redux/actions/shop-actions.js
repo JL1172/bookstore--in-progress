@@ -16,7 +16,7 @@ export const CART_ON = "CART_ON";
 export const fetchingBooksSuccess = (query,creds) => dispatch => {
     if (!query) {
         dispatch(fetchingBooks(true));
-        axios.create({headers : {authorization : JSON.parse(window.localStorage.getItem("token"))}}).post(`http://localhost:9000/api/books`,creds).then(res => {
+        axios.create({headers : {authorization : JSON.parse(window.localStorage.getItem("token"))}}).post(`http://localhost:7000/api/books`,creds).then(res => {
             dispatch(getBooks(res.data))
         }).catch(err => console.error(err.message))
         setTimeout(() => {
@@ -24,7 +24,7 @@ export const fetchingBooksSuccess = (query,creds) => dispatch => {
         }, 200);
     } else {
         dispatch(fetchingBooks(true));
-        axios.create({headers : {authorization : JSON.parse(window.localStorage.getItem("token"))}}).post(`http://localhost:9000/api/books${query}`,creds).then(res => {
+        axios.create({headers : {authorization : JSON.parse(window.localStorage.getItem("token"))}}).post(`http://localhost:7000/api/books${query}`,creds).then(res => {
             dispatch(getBooks(res.data))
         }).catch(err => console.error(err.message))
         setTimeout(() => {
@@ -37,7 +37,7 @@ export const fetchingBooksSuccess = (query,creds) => dispatch => {
 export const fetchingBooksSuccessNo2 = (query,creds) => dispatch => {
     if (!query) {
         dispatch(fetchingBooks(true));
-        axios.create({headers : {authorization : window.localStorage.getItem("token")}}).post(`http://localhost:9000/api/books`,creds).then(res => {
+        axios.create({headers : {authorization : window.localStorage.getItem("token")}}).post(`http://localhost:7000/api/books`,creds).then(res => {
             dispatch(getBooksNo1(res.data))
         }).catch(err => console.error(err.message))
         setTimeout(() => {
@@ -45,7 +45,7 @@ export const fetchingBooksSuccessNo2 = (query,creds) => dispatch => {
         }, 200);
     } else {
         dispatch(fetchingBooks(true));
-        axios.create({headers : {authorization : JSON.parse(window.localStorage.getItem("token"))}}).post(`http://localhost:9000/api/books${query}`,creds).then(res => {
+        axios.create({headers : {authorization : JSON.parse(window.localStorage.getItem("token"))}}).post(`http://localhost:7000/api/books${query}`,creds).then(res => {
             dispatch(getBooksNo1(res.data))
         }).catch(err => console.error(err.message))
         setTimeout(() => {

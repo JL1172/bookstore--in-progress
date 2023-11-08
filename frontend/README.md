@@ -38,32 +38,32 @@ To run the application locally, follow these steps:
 > * NOTE!! Password is not HSA encrypted when in REDUX store. 
 
 
-* [POST] `http://localhost:9000/api/books, CREDENTIALS`
+* [POST] `http://localhost:7000/api/books, CREDENTIALS`
 
-* [POST] `http://localhost:9000/api/books?limit=10&sortby=book_title&sortdir=asc&page=1, CREDENTIALS`
+* [POST] `http://localhost:7000/api/books?limit=10&sortby=book_title&sortdir=asc&page=1, CREDENTIALS`
 * NOTE!! the above query strings are the default values set by the backend. 
 
-* [POST] `http://localhost:9000/api/login, CREDENTIALS`
+* [POST] `http://localhost:7000/api/login, CREDENTIALS`
 * this does not need a jwt token in the headers. 
 
-* [POST] `http://localhost:9000/api/register, CREDENTIALS` 
+* [POST] `http://localhost:7000/api/register, CREDENTIALS` 
 * NOTE!! after successful completion, this will generate an account, place in relational database and send back to login page to complete login.
 * this does not need a jwt token in the headers. 
 
 
-* [GET] `http://localhost:9000/api/account/:id` 
+* [GET] `http://localhost:7000/api/account/:id` 
 * this fetched the data of that specific account
 * only takes id 
 
-* [GET] `http://localhost:9000/api/account/:id/order` 
+* [GET] `http://localhost:7000/api/account/:id/order` 
 * this returns all orders made by customer
 * only takes id 
 
-* [POST] `http://localhost:9000/api/account/:id/orders/books`
+* [POST] `http://localhost:7000/api/account/:id/orders/books`
 * this takes an id and book_id to purchase a book and mark all purchases in relational database
 
-* [PUT] `http://localhost:9000/api/account/:id` 
+* [PUT] `http://localhost:7000/api/account/:id` 
 * this takes all changes to make to the profile, any piece of data etc associated with profile.
 
-* [DELETE] `http://localhost:9000/api/account/:id` 
+* [DELETE] `http://localhost:7000/api/account/:id` 
 * this deletes a user, this is permanent, so add double verification 
