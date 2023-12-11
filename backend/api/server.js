@@ -23,7 +23,7 @@ const server = express();
 //global middleware
 server.use(express.json());
 server.use(morgan("dev"));
-server.use(cors({origin : "http://localhost:3000"}));
+server.use(cors());
 server.use(helmet());
 //global middleware
 
